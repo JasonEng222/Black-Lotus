@@ -18,21 +18,17 @@ class UnconnectedProfile extends Component {
   componentDidMount = async () => {
     let data = new FormData();
     data.append("user", this.props.state.username);
-    console.log(this.props.state.username);
     let res = await fetch("/my-cards", {
       method: "POST",
       body: data
     });
     let b = await res.text();
     b = JSON.parse(b);
-    console.log(b);
     this.setState({ mycards: b.collection }); //above = fetch mycards
     let response = await fetch("/all-cards");
     let body = await response.text();
     body = JSON.parse(body);
     this.setState({ allcards: body });
-    console.log(this.state.mycards);
-    console.log(this.state.allcards.cards[0].cardId);
     let mycardsfull = [];
     let pushcards = this.state.allcards.cards.filter(card => {
       let i = 0;
@@ -49,10 +45,8 @@ class UnconnectedProfile extends Component {
       type: "choose-deck",
       currentdeck: this.props.mydecks[0]
     });
-    console.log(this.state);
   };
   addToDeckList = async card => {
-    console.log(card);
     let data = new FormData();
     data.append("username", this.props.state.username);
     data.append("deckname", this.props.state.currentdeck);
@@ -73,8 +67,6 @@ class UnconnectedProfile extends Component {
     let body = new FormData();
     body.append("username", this.props.username);
     body.append("deckname", this.state.newdeckname);
-    console.log(this.props.username);
-    console.log(this.state.newdeckname);
     fetch("/new-deck", { method: "POST", body });
     this.props.dispatch({
       type: "choose-new-deck",
@@ -107,9 +99,6 @@ class UnconnectedProfile extends Component {
                 return <option value={deck}>{deck}</option>;
               })}
             </select>
-            {/* <div className="current-deck">
-              Currently selected Deck: {this.props.currentdeck}
-            </div> */}
             <div className="navbar-right">
               <div></div>
               <div className="nav-pad">
@@ -137,7 +126,6 @@ class UnconnectedProfile extends Component {
                     <Link to={"/CardDetails/" + card.cardId}>
                       <img src={card.img} height="250px" />
                     </Link>{" "}
-                    {/* <button onClick={this.addToDeckList}>Add to decklist</button> */}
                     <button onClick={() => this.addToDeckList(card)}>
                       Add to decklist
                     </button>{" "}
@@ -158,10 +146,7 @@ class UnconnectedProfile extends Component {
             </Link>
           </div>
           <div className="navbar-right">
-            <div className="navbar-center">
-              {/* <div>Current deck: </div>
-              <div>Select a deck</div> */}
-            </div>
+            <div className="navbar-center"></div>
             <select onChange={event => this.clickHandler(event.target.value)}>
               {this.props.mydecks.map(deck => {
                 return <option value={deck}>{deck}</option>;
@@ -186,7 +171,6 @@ class UnconnectedProfile extends Component {
           ></input>
           <button onClick={this.addNewDeck}>Submit</button>
           <div></div>
-          {/* <div>{this.props.username}</div> */}
           <div className="my-collection">
             {this.state.mycardsfull.map(card => {
               return (
@@ -194,7 +178,6 @@ class UnconnectedProfile extends Component {
                   <Link to={"/CardDetails/" + card.cardId}>
                     <img src={card.img} height="300px" />
                   </Link>{" "}
-                  {/* <button onClick={this.addToDeckList}>Add to decklist</button> */}
                   <button onClick={() => this.addToDeckList(card)}>
                     Add to decklist
                   </button>{" "}

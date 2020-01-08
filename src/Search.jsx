@@ -32,8 +32,6 @@ class UnconnectedSearch extends Component {
     body.append("price", this.state.price);
     body.append("pricef", this.state.priceF);
     body.append("affiliate", this.state.affiliate);
-    console.log(body);
-    console.log(this.state);
     fetch("/add-to-all", { method: "POST", body });
   };
   addCollection = () => {
@@ -48,12 +46,9 @@ class UnconnectedSearch extends Component {
     body.append("price", this.state.price);
     body.append("pricef", this.state.priceF);
     body.append("affiliate", this.state.affiliate);
-    console.log(body);
-    console.log(this.state);
     fetch("/add-card-to-collection", { method: "POST", body });
   };
   clickHandler = () => {
-    // fetch("https://api.scryfall.com/cards/search?q=" + this.state.search)
     fetch("https://api.scryfall.com/cards/named?fuzzy=" + this.state.search)
       .then(res => res.json())
       .then(json => {
@@ -79,7 +74,6 @@ class UnconnectedSearch extends Component {
         this.setState({ colors });
         this.setState({ id });
         this.setState({ affiliate });
-        console.log(this.state);
         this.addToAll();
       });
   };
@@ -113,8 +107,6 @@ class UnconnectedSearch extends Component {
             }}
           />
           <button onClick={this.clickHandler}>Search</button>
-          {/* <button onClick={this.autoComplete}>autocomplete</button> */}
-
           <div className="center-items">
             <Link to={"/CardDetails/" + this.state.id} onClick={this.addToAll}>
               <img src={this.state.img} height="400px" />{" "}
@@ -132,18 +124,6 @@ class UnconnectedSearch extends Component {
                 ? " Currently Unavailable"
                 : this.state.priceF + "$ USD"}
             </div>
-            {/* <div>Description:{this.state.oracleText}</div>
-          <div>CmC:{this.state.cmc}</div>
-          <div>
-          Color Identity:
-          {this.state.colorIdentity.length === 0
-            ? " Colorless"
-            : this.state.colors}
-            </div>
-            <div>
-            Colors:
-            {this.state.colors.length === 0 ? " Colorless" : this.state.colors}
-          </div> */}
             <a href={this.state.affiliate}>Purchase from our affiliate </a>
             <div></div>
             <button onClick={this.addCollection}>Add to my collection</button>

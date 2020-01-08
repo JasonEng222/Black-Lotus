@@ -15,24 +15,17 @@ class UnconnectedDecklist extends Component {
     let data = new FormData();
     data.append("username", this.props.state.username);
     data.append("deckname", this.props.state.currentdeck);
-    console.log(this.props.state.username);
-    console.log(this.props.state.currentdeck);
     let res = await fetch("/retrieve-decklist", {
       method: "POST",
       body: data
     });
     let b = await res.text();
-    console.log(b);
     b = JSON.parse(b);
-    console.log(b);
     this.setState({ mycards: b.card[0].cards });
-    console.log(this.state); // above = fetch mycards
     let response = await fetch("/all-cards");
     let body = await response.text();
     body = JSON.parse(body);
     this.setState({ allcards: body });
-    console.log(this.state.mycards);
-    console.log(this.state.allcards.cards[0].cardId);
     let mycardsfull = [];
     let pushcards = this.state.allcards.cards.filter(card => {
       let i = 0;
@@ -45,7 +38,6 @@ class UnconnectedDecklist extends Component {
     });
     this.setState({ mycardsfull });
     this.setState({ loading: false });
-    console.log(this.state);
   };
   render = () => {
     return (
@@ -56,9 +48,6 @@ class UnconnectedDecklist extends Component {
               Black Lotus
             </Link>
           </div>
-          {/* <div className="current-deck">
-            Currently selected Deck: {this.props.currentdeck}
-          </div> */}
           <div className="navbar-right">
             <Link className="link" to="/MyCollection">
               My Collection

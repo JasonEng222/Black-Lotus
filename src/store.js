@@ -6,11 +6,6 @@ let initialState = {
   currentdeck: "",
   mydecks: []
 };
-// let initialState = {
-//   loggedIn: false,
-//   username: "",
-//   mycards: []
-// };
 let reducer = (state, action) => {
   if (action.type === "signup-success") {
     return { ...state, loggedIn: action.loggedIn };

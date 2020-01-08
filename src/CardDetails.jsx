@@ -41,11 +41,9 @@ class UnconnectedCardDetails extends Component {
       type: "choose-deck",
       currentdeck: deck
     });
-    console.log(this);
   };
   render = () => {
     if (this.state.cardinfo.length === 0) {
-      console.log(this);
       return "";
     }
     let cardinfo = this.state.cardinfo[0];
@@ -58,9 +56,6 @@ class UnconnectedCardDetails extends Component {
                 Black Lotus
               </Link>
             </div>
-            {/* <div className="current-deck">
-              Currently selected Deck: {this.props.currentdeck}
-            </div> */}
             <div className="navbar-right">
               <Link className="link" to="/MyCollection">
                 My Collection

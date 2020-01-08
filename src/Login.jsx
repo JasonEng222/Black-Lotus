@@ -18,12 +18,9 @@ class UnconnectedLogin extends Component {
   };
   submitHandler = async event => {
     event.preventDefault();
-    console.log("submit");
     let data = new FormData();
-    console.log(this);
     data.append("username", this.state.username);
     data.append("password", this.state.password);
-    console.log(data);
     let response = await fetch("/login", {
       method: "post",
       body: data,
@@ -31,7 +28,6 @@ class UnconnectedLogin extends Component {
     });
     let responseBody = await response.text();
     let body = JSON.parse(responseBody);
-    console.log(body, "body");
     if (!body.success) {
       alert("login failed, please try again");
       return;

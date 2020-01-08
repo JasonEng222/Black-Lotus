@@ -25,11 +25,9 @@ class UnconnectedSignup extends Component {
     data.append("password", password);
     let response = await fetch("/signup", { method: "POST", body: data });
     let body = await response.text();
-
     body = JSON.parse(body);
     if (!body.success) {
       this.props.dispatch({ type: "unssuccessful", loggedIn: false });
-
       alert("This username is already in use");
       return;
     }
@@ -78,25 +76,6 @@ class UnconnectedSignup extends Component {
               </div>
             </div>
           </div>
-          {/* Username:
-          <input
-            type="text"
-            value={this.state.username}
-            onChange={this.usernameHandler}
-          ></input>
-          Password:
-          <input
-            type="password"
-            value={this.state.password}
-            onChange={this.passwordHandler}
-          ></input>
-          <div>
-            If you already have an account please login{" "}
-            <Link to="/Login" className="hide-link">
-              here
-            </Link>
-          </div>
-          <input type="submit" value="submit"></input> */}
         </form>
       </div>
     );

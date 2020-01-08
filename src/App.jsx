@@ -8,7 +8,6 @@ import MyProfile from "./MyProfile.jsx";
 import CardDetails from "./CardDetails.jsx";
 import DeckList from "./DeckList.jsx";
 import "./main.css";
-// import MyProfile from "./MyProfile.jsx";
 class UnconnectedApp extends Component {
   render = () => {
     return (

@@ -17,7 +17,7 @@ app.post("/signup", upload.none(), (req, res) => {
   console.log("signup endpoint hit");
   let username = req.body.username;
   let password = req.body.password;
-  dbo.collection("users").findOne({ username: username }, (error, user) => {
+  dbo.collection("users").findOne({ username }, (error, user) => {
     if (error) {
       console.log("/signup error", error);
       res.send(JSON.stringify({ success: false, error }));
@@ -30,7 +30,7 @@ app.post("/signup", upload.none(), (req, res) => {
     if (user === null) {
       dbo
         .collection("users")
-        .insertOne({ username: username, password: password })
+        .insertOne({ username, password })
         .then(() => res.send({ success: true }))
         .catch(error =>
           res.send(
@@ -46,7 +46,6 @@ app.post("/signup", upload.none(), (req, res) => {
 app.post("/my-cards", upload.none(), (req, res) => {
   console.log("mycards endpoint hit");
   let username = req.body.user;
-
   dbo.collection("users").findOne({ username }, (error, document) => {
     res.send(JSON.stringify(document));
     return;

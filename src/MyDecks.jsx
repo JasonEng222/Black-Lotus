@@ -9,19 +9,14 @@ class UnconnectedMyDecks extends Component {
   componentDidMount = () => {
     let body = new FormData();
     body.append("username", this.props.username);
-    console.log(this.props.username);
-    console.log(this.state);
     fetch("/my-decks", { method: "POST", body })
       .then(res => res.text())
       .then(responsebody => {
-        console.log(JSON.parse(responsebody));
         let cardbody = JSON.parse(responsebody);
-        console.log(cardbody.decks);
         let mydecks = cardbody.decks.map(deck => {
           return deck.deckname;
         });
         this.setState({ mydecks: mydecks });
-        console.log(this.state);
         this.props.dispatch({
           type: "set-my-decks",
           mydecks: this.state.mydecks
@@ -29,12 +24,10 @@ class UnconnectedMyDecks extends Component {
       });
   };
   clickHandler = deck => {
-    console.log(deck);
     this.props.dispatch({
       type: "choose-deck",
       currentdeck: deck
     });
-    console.log(this);
   };
 
   render = () => {
@@ -58,11 +51,6 @@ class UnconnectedMyDecks extends Component {
               );
             })}
           </div>
-          {/* <select onChange={event => this.clickHandler(event.target.value)}>
-            {this.state.mydecks.map(deck => {
-              return <option value={deck}>{deck}</option>;
-            })}
-          </select> */}
         </div>
       );
     }
@@ -88,18 +76,6 @@ class UnconnectedMyDecks extends Component {
             );
           })}
         </div>
-        {/* <select onChange={event => this.clickHandler(event.target.value)}>
-          {this.state.mydecks.map(deck => {
-            return <option value={deck}>{deck}</option>;
-          })}
-        </select> */}
-        {/* {this.state.mydecks.map(deck => {
-          return (
-            <div>
-              <button onClick={() => this.clickHandler(deck)}>{deck}</button>{" "}
-            </div>
-          );
-        })} */}
       </div>
     );
   };
