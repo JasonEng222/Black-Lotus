@@ -1,6 +1,32 @@
+html {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 100%;
+
+  font-family: 'Fredoka One', cursive;
+}
+
 body {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 100%;
   background-color: #bbb;
   margin: 0;
+}
+
+#root {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+p {
+  margin: 0px;
+  font-size: 20px;
+  line-height: 1.2;
 }
 
 .hide {
@@ -30,7 +56,7 @@ body {
   grid-column-gap: 50px;
   grid-row-gap: 50px;
   justify-content: center;
-  font-family: "Roboto", sans-serif;
+  font-family: 'Roboto', sans-serif;
   margin: 50px;
 }
 .navbar-page {
@@ -39,18 +65,10 @@ body {
   background-color: #146568;
   height: 100px;
 }
-.navbar-mini {
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-  background-color: #146568;
-  height: 70px;
-  position: fixed;
-  width: 100%;
-}
+
 .navbar-title {
   position: absolute;
-  font-family: "Fredoka One", cursive;
+  font-family: 'Fredoka One', cursive;
   /* font-style: italic; */
   font-style: oblique;
   font-size: 28px;
@@ -103,18 +121,6 @@ body {
 .search-bar-input {
   font-size: 30px;
 }
-* {
-  font-family: "Fredoka One", cursive;
-  /* font-size: 20px; */
-}
-.background-image {
-  height: 100vh;
-  width: 100vw;
-  position: fixed;
-  z-index: -1;
-  background: url("/mtgfullart.bmp");
-  background-repeat: no-repeat;
-}
 .link-to-deck {
   display: flex;
   flex: wrap;
@@ -134,16 +140,6 @@ body {
   /* align-items: center;  */
   height: 100vh;
 }
-.search-component-info {
-  justify-content: center;
-  /* align-items: center;  */
-  height: 100vh;
-}
-.input-and-button {
-  position: absolute;
-  top: 100px;
-  align-items: center;
-}
 .card-detes {
   display: flex;
   flex-direction: column;
@@ -158,12 +154,7 @@ body {
   justify-content: center;
   font-size: 18px;
 }
-.login-form {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 55vh;
-}
+
 .navbar-center {
   display: flex;
   justify-content: center;
